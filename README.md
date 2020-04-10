@@ -8,22 +8,30 @@ As a real estate agent, for what reasons would I recommend a 1-story over 2-stor
 
 ### Overview
 
-For this project, I analyzed 2017 and 2018 SAT and ACT data. This data included reports of participation levels, mean individual test subject scores and total/composite scores per state. I wanted to get a better understanding of which states had the lowest SAT participation and possible explanations for the statistics. I cleaned this data and explored it to get try to identify any possible correlations involving these states.
+For this project, I analyzed housing data from Ames, Iowa in 2010. This data included reports of garage size, lot size, kitchen quality, amount of bedrooms and bathrooms, foundation type, etc., and associated price. I wanted to get a better understanding of the differences in house features between single story and double story homes. I cleaned this data and explored it to get try to identify the highest and practical correlations between housing features and sale price.
 
 ### Dataset Features
+
+Full dataset features: https://www.kaggle.com/c/dsi-us-11-project-2-regression-challenge/data
+
+### Model Dataset Features
 |Feature|Type|Dataset|Description|
 |---|---|---|---|
-|**state**|*object*|ACT/SAT|The 50 states of the U.S. (including the entire Nation)|
-|**sat_participation_17**|*float*|SAT|The percentage of the state that took the SAT in 2017|
-|**sat_english_17**|*int*|SAT|The mean SAT Evidence-Based Reading and Writing score for each state in 2017|
-|**sat_math_17**|*int*|SAT|The mean SAT Math score for each state in 2017|
-|**sat_total_17**|*int*|SAT|The mean SAT total score for each state in 2017|
-|**act_participation_17**|*float*|ACT|The percentage of the state that took the ACT in 2017|
-|**act_english_17**|*float*|ACT|The mean ACT English score for each state in 2017|
-|**act_math_17**|*float*|ACT|The mean ACT Math score for each state in 2017|
-|**act_reading_17**|*float*|ACT|The mean ACT Reading score for each state in 2017|
-|**act_science_17**|*float*|ACT|The mean ACT Science score for each state in 2017|
-|**act_composite_17**|*float*|ACT|The mean ACT composite score for each state in 2017|
+|**Overall Qual**|*int*|train/test|Overall material and finish quality on scale 1-10|
+|**Gr Liv Area**|*int*|train/test|Above grade (ground) living area square feet|
+|**Exter Qual**|*int*|trai/test|Exterior material quality|
+|**Kitchen Qual**|*int*|train/test|Kitchen quality|
+|**Garage Area**|*float*|train/test|Size of garage in square feet|
+|**Garage Cars**|*float*|train/test|Size of garage in car capacity|
+|**Total Bsmt SF**|*float*|train/test|Total square feet of basement area|
+|**1st Flr SF**|*int*|train/test|First Floor square feet|
+|**Year Built**|*int*|train/test|Original construction date|
+|**total_bath**|*int*|train/test|Amount of total bathrooms|
+|**Bedroom AbvGr**|*int*|train/test|Number of bedrooms above basement level|
+|**floors**|*int*|train/test|Whether a house is 2 stories or not|
+|**Lot Area**|*int*|train/test|The lot size in square feet|
+|**Central Air_Y**|*int*|train/test|Central air conditioning present of not|
+|**SalePrice**|*int*|train/test|The property's sale price in dollars|
 
 
 I found that **Michigan**, **Connecticut**, and **Delaware** had the highest SAT participation for both 2017 and 2018, and **North Dakota** consistently had the lowest participation rate. However, I did also discover that despite having consistently the lowest participation rate, **North Dakota** did have the third highest mean SAT total score in 2018.
