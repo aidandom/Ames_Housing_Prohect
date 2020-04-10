@@ -14,7 +14,7 @@ For this project, I analyzed housing data from Ames, Iowa in 2010. This data inc
 
 Full dataset features: https://www.kaggle.com/c/dsi-us-11-project-2-regression-challenge/data
 
-### Model Dataset Features
+### Model Features
 |Feature|Type|Dataset|Description|
 |---|---|---|---|
 |**Overall Qual**|*int*|train/test|Overall material and finish quality on scale 1-10|
