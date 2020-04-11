@@ -1,183 +1,53 @@
 # Project 2 - Ames Housing Data and Kaggle Challenge
 
-Welcome to Project 2! It's time to start modeling.
+### Problem Statement
 
-**Primary Learning Objectives:**
-1. Creating and iteratively refining a regression model
-2. Using [Kaggle](https://www.kaggle.com/) to practice the modeling process
-3. Providing business insights through reporting and presentation.
-
-You are tasked with creating a regression model based on the Ames Housing Dataset. This model will predict the price of a house at sale.
-
-The Ames Housing Dataset is an exceptionally detailed and robust dataset with over 70 columns of different features relating to houses.
-
-Secondly, we are hosting a competition on Kaggle to give you the opportunity to practice the following skills:
-
-- Refining models over time
-- Use of train-test split, cross-validation, and data with unknown values for the target to simulate the modeling process
-- The use of Kaggle as a place to practice data science
-
-As always, you will be submitting a technical report and a presentation. **You may find that the best model for Kaggle is not the best model to address your data science problem.**
-
-## Set-up
-
-Before you begin working on this project, please do the following:
-
-1. Sign up for an account on [Kaggle](https://www.kaggle.com/)
-2. **IMPORTANT**: Click this link ([Regression Challenge Sign Up](https://www.kaggle.com/t/2dde5663e03b4165b853ff65e723c26d)) to **join** the competition (otherwise you will not be able to make submissions!)
-3. Review the material on the [DSI-US-11 Regression Challenge](https://www.kaggle.com/c/dsi-us-11-project-2-regression-challenge)
-4. Review the [data description](http://jse.amstat.org/v19n3/decock/DataDocumentation.txt).
-
-## The Modeling Process
-
-1. The train dataset has all of the columns that you will need to generate and refine your models. The test dataset has all of those columns except for the target that you are trying to predict in your Regression model.
-2. Generate your regression model using the training data. We expect that within this process, you'll be making use of:
-    - train-test split
-    - cross-validation / grid searching for hyperparameters
-    - strong exploratory data analysis to question correlation and relationship across predictive variables
-    - code that reproducibly and consistently applies feature transformation (such as the preprocessing library)
-3. Predict the values for your target column in the test dataset and submit your predictions to Kaggle to see how your model does against unknown data.
-    - **Note**: Kaggle expects to see your submissions in a specific format. Check the challenge's page to make sure you are formatting your CSVs correctly!
-    - **You are limited to models you've learned in class**. In other words, you cannot use XGBoost, Neural Networks or any other advanced model for this project.
-4. Evaluate your models!
-    - consider your evaluation metrics
-    - consider your baseline score
-    - how can your model be used for inference?
-    - why do you believe your model will generalize to new data?
-
-## Submission
-
-Materials must be submitted by the beginning of class on **Friday, April 10**.
-
-The last day for the Kaggle competition will be **Friday, April 10**.
-
-Your technical report will be hosted on Github Enterprise. Make sure it includes:
-
-- A README.md (that isn't this file)
-- Jupyter notebook(s) with your analysis and models (renamed to describe your project)
-- At least one successful prediction submission on [DSI-US-11 Regression Challenge](https://www.kaggle.com/c/dsi-us-11-project-2-regression-challenge) --  you should see your name in the "[Leaderboard](https://www.kaggle.com/c/dsi-us-11-project-2-regression-challenge/leaderboard)" tab.
-- Data files
-- Presentation slides
-- Any other necessary files (images, etc.)
-
-**Check with your local instructor for how they would like you to submit your repo for review.**
+As a real estate agent, for what reasons would I recommend a 1-story over 2-story house to first-time home buyers?
 
 ---
 
-## Presentation Structure
+### Overview
 
-- **Must be within time limit established by local instructor.**
-- Use Google Slides or some other visual aid (Keynote, Powerpoint, etc).
-- Consider the audience. **Check with your local instructor for direction**.
-- Start with the **data science problem**.
-- Use visuals that are appropriately scaled and interpretable.
-- Talk about your procedure/methodology (high level).
-- Talk about your primary findings.
-- Make sure you provide **clear recommendations** that follow logically from your analyses and narrative and answer your data science problem.
+For this project, I analyzed housing data from Ames, Iowa in 2010. This data included reports of garage size, lot size, kitchen quality, amount of bedrooms and bathrooms, foundation type, etc., and associated price. I wanted to get a better understanding of the differences in house features between single story and double story homes. I cleaned this data and explored it to get try to identify the highest and practical correlations between housing features and sale price.
 
-Be sure to rehearse and time your presentation before class.
+### Dataset Features
 
----
+Full dataset features: https://www.kaggle.com/c/dsi-us-11-project-2-regression-challenge/data
 
-## Rubric
-Your local instructor will evaluate your project (for the most part) using the following criteria.  You should make sure that you consider and/or follow most if not all of the considerations/recommendations outlined below **while** working through your project.
+### Model Features
+|Feature|Type|Dataset|Description|
+|---|---|---|---|
+|**Overall Qual**|*int*|train/test|Overall material and finish quality on scale 1-10|
+|**Gr Liv Area**|*int*|train/test|Above grade (ground) living area square feet|
+|**Exter Qual**|*int*|trai/test|Exterior material quality|
+|**Kitchen Qual**|*int*|train/test|Kitchen quality|
+|**Garage Area**|*float*|train/test|Size of garage in square feet|
+|**Garage Cars**|*float*|train/test|Size of garage in car capacity|
+|**Total Bsmt SF**|*float*|train/test|Total square feet of basement area|
+|**1st Flr SF**|*int*|train/test|First Floor square feet|
+|**Year Built**|*int*|train/test|Original construction date|
+|**total_bath**|*int*|train/test|Amount of total bathrooms|
+|**Bedroom AbvGr**|*int*|train/test|Number of bedrooms above basement level|
+|**floors**|*int*|train/test|Whether a house is 2 stories or not|
+|**Lot Area**|*int*|train/test|The lot size in square feet|
+|**Central Air_Y**|*int*|train/test|Central air conditioning present of not|
+|**SalePrice**|*int*|train/test|The property's sale price in dollars|
 
-**Scores will be out of 27 points based on the 9 items in the rubric.** <br>
-*3 points per section*<br>
 
-| Score | Interpretation |
-| --- | --- |
-| **0** | *Project fails to meet the minimum requirements for this item.* |
-| **1** | *Project meets the minimum requirements for this item, but falls significantly short of portfolio-ready expectations.* |
-| **2** | *Project exceeds the minimum requirements for this item, but falls short of portfolio-ready expectations.* |
-| **3** | *Project meets or exceeds portfolio-ready expectations; demonstrates a thorough understanding of every outlined consideration.* |
+### Procedure / Methodology
+For this project, I began by looking through the data dictionary and the associated columns in the train.csv data set to get an idea of the possible features I could use for a Linear Regression model.  I started with general data cleaning; I dropped the item with Id 2182, and I checked for missing values and corrupt datatype columns. I found that over 80% of values were missing for the 'Pool QC', 'Fence', 'Misc Feature', and 'Alley', so I decided to drop those columns completely. Next, to account for any foreclosures, I dropped all rows where the Sale Type was labelled as Other.
 
-### The Data Science Process
+After cleaning the data, I started my EDA. I decided that I wanted to explore differences in single and double story homes, so I began my analysis with that in mind.  After exploring or engineering a feature, I checked the correlation to SalePrice to assess if the feature was significant enough to be added as a model paramater. I started by engineering a new feature called total_baths that was a sum of the half baths and total baths of a house so that I could more easily compare amount of bathrooms between different houses. I then looked at Street Type to explore price differecens in houses based on paved streets. I then looked at lot area and created a feature called 'big_house' to see if there was a significant price difference in houses with a lot size of over 9,000sqft. I then explored some categorical variables by converting 'Exter Qual', 'House Style', 'Central Air', and 'Kitchen Qual' to numeric variables, comparing their correlation with Sale Price. I then eliminated some rows from the dataset that had outlier numbers for the amount of bedrooms to ensure my model would seem more accurate. After all of this analysis, I decided on the features in the data dictionary above due to their high correlation and relevance to my problem statement. I then log transformed the Sale Price column to normalize its distribution before fitting to my model.
 
-**Problem Statement**
-- Is it clear what the student plans to do?
-- What type of model will be developed?
-- How will success be evaluated?
-- Is the scope of the project appropriate?
-- Is it clear who cares about this or why this is important to investigate?
-- Does the student consider the audience and the primary and secondary stakeholders?
+For the modelling process, I began by splitting my 'train' data set into a training set and testing set. I then fit a linear regression model, scored the model and looked at the cross validation score. Unsatisfied with the model, I scaled the data and fit it into a Lasso cv, Ridge, cv, and Elastic Net cv to compare the difference in scores of each regularization technique. I found Lasso to be the most balanced model, but the model was slightly underfit. To create an even better model, I created interaction terms using PolynomialFeatures. I then rescaled and regularized my model, and using Lasso, I ended up with nearly identical training and testing r2 scores of about 0.85. 
 
-**Data Cleaning and EDA**
-- Are missing values imputed appropriately?
-- Are distributions examined and described?
-- Are outliers identified and addressed?
-- Are appropriate summary statistics provided?
-- Are steps taken during data cleaning and EDA framed appropriately?
-- Does the student address whether or not they are likely to be able to answer their problem statement with the provided data given what they've discovered during EDA?
+I then transformed and scaled the 'test' dataset in the same way that I did for the 'train' set and predicted the Sale Price for each home using my final Lasso Model.
 
-**Preprocessing and Modeling**
-- Are categorical variables one-hot encoded?
-- Does the student investigate or manufacture features with linear relationships to the target?
-- Have the data been scaled appropriately?
-- Does the student properly split and/or sample the data for validation/training purposes?
-- Does the student utilize feature selection to remove noisy or multi-collinear features?
-- Does the student test and evaluate a variety of models to identify a production algorithm (**AT MINIMUM:** linear regression, lasso, and ridge)?
-- Does the student defend their choice of production model relevant to the data at hand and the problem?
-- Does the student explain how the model works and evaluate its performance successes/downfalls?
+### Conclusion
+After analyzing the data and looking for differences between single and double story homes, I found that there were no significant differences between single and double story homes. In fact, single story homes were on average $35,000 less expensive with marginal decreases in garage size and amounts of bathrooms. However, there was a noticeable increase in lot and basement size for single story homes, providing home owners with larger, warmer basement spaces for the winter and larger amounts of land around their home. This was especially noteworthy due to outside research that suggested that home lot areas have been steadily decresing over time, indicating that bigger lot sizes were starting to become a welcomed luxury. With these factors in mind, I would recommend single story homes to potential new home owners.
 
-**Evaluation and Conceptual Understanding**
-- Does the student accurately identify and explain the baseline score?
-- Does the student select and use metrics relevant to the problem objective?
-- Is more than one metric utilized in order to better assess performance?
-- Does the student interpret the results of their model for purposes of inference?
-- Is domain knowledge demonstrated when interpreting results?
-- Does the student provide appropriate interpretation with regards to descriptive and inferential statistics?
 
-**Conclusion and Recommendations**
-- Does the student provide appropriate context to connect individual steps back to the overall project?
-- Is it clear how the final recommendations were reached?
-- Are the conclusions/recommendations clearly stated?
-- Does the conclusion answer the original problem statement?
-- Does the student address how findings of this research can be applied for the benefit of stakeholders?
-- Are future steps to move the project forward identified?
+### Outside Data Sources
 
-### Organization and Professionalism
+https://www.desmoinesregister.com/story/money/business/development/2015/06/20/bigger-homes-smaller-lots-prairie-trail/29010087/
 
-**Project Organization**
-- Are modules imported correctly (using appropriate aliases)?
-- Are data imported/saved using relative paths?
-- Does the README provide a good executive summary of the project?
-- Is markdown formatting used appropriately to structure notebooks?
-- Are there an appropriate amount of comments to support the code?
-- Are files & directories organized correctly?
-- Are there unnecessary files included?
-- Do files and directories have well-structured, appropriate, consistent names?
-
-**Visualizations**
-- Are sufficient visualizations provided?
-- Do plots accurately demonstrate valid relationships?
-- Are plots labeled properly?
-- Are plots interpreted appropriately?
-- Are plots formatted and scaled appropriately for inclusion in a notebook-based technical report?
-
-**Python Syntax and Control Flow**
-- Is care taken to write human readable code?
-- Is the code syntactically correct (no runtime errors)?
-- Does the code generate desired results (logically correct)?
-- Does the code follows general best practices and style guidelines?
-- Are Pandas functions used appropriately?
-- Are `sklearn` methods used appropriately?
-
-**Presentation**
-- Is the problem statement clearly presented?
-- Does a strong narrative run through the presentation building toward a final conclusion?
-- Are the conclusions/recommendations clearly stated?
-- Is the level of technicality appropriate for the intended audience?
-- Is the student substantially over or under time?
-- Does the student appropriately pace their presentation?
-- Does the student deliver their message with clarity and volume?
-- Are appropriate visualizations generated for the intended audience?
-- Are visualizations necessary and useful for supporting conclusions/explaining findings?
-
-In order to pass the project, students must earn a minimum score of 1 for each category.
-- Earning below a 1 in one or more of the above categories would result in a failing project.
-- While a minimum of 1 in each category is the required threshold for graduation, students should aim to earn at least an average of 1.5 across each category. An average score below 1.5, while it may be passing, means students may want to solicit specific feedback in order to significantly improve the project before showcasing it as part of a portfolio or the job search.
-
-### REMEMBER:
-
-This is a learning environment and you are encouraged to try new things, even if they don't work out as well as you planned! While this rubric outlines what we look for in a _good_ project, it is up to you to go above and beyond to create a _great_ project. **Learn from your failures and you'll be prepared to succeed in the workforce**.
